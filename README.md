@@ -1,2 +1,2 @@
 # ios-ui-automation
-Parallel ios automation using fb simulator control
+Parallel ios automation using fbsimulatorcontrol
