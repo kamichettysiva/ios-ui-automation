@@ -9,8 +9,8 @@ import java.util.Map;
 public class DeviceConfig {
     public static Map<String, String> deviceUrl = new HashMap<String, String>() {
         {
-            put("7p", "http://localhost:8101/session");
-            put("7", "http://localhost:8102/session");
+            put("7", "http://localhost:8101/session");
+            put("7p", "http://localhost:8102/session");
         }
     };
 

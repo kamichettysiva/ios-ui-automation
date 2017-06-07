@@ -59,6 +59,7 @@ task runInParallel {
     }
 }
 
+
 def runCucumberTests(testProperties, tag) {
     def features = fileTree(dir: "${project.projectDir}/build/resources/test/").include '**/*.feature'
 

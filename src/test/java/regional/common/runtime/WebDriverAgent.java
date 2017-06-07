@@ -146,7 +146,7 @@ public class WebDriverAgent {
         return (JsonObject) response.get("value").getAsJsonArray().get(0);
     }
 
-    private void sleepTimeout(String timeout) {
+    public void sleepTimeout(String timeout) {
         try {
             Thread.sleep(Long.parseLong(TestProperty.getProperty("environment", timeout)) * 1000);
         } catch (Exception e) {

@@ -14,14 +14,12 @@ public class BasePage {
 
     public void clickBtn(String btnLabel) {
         JsonObject startId = wda.findElementsByClass("XCUIElementTypeButton", btnLabel);
+        wda.sleepTimeout("5");
         wda.tap(startId.get("ELEMENT").getAsString());
     }
 
     public void clickSearchText() {
-        JsonObject tipMsg = wda.findElementsByXpath("//XCUIElementTypeTextView[@value='Start your search']");
         JsonObject searchFieldFocus = wda.findElementsByXpath("//XCUIElementTypeImage[@name='search-icon']");
-        wda.tap(searchFieldFocus.get("ELEMENT").getAsString());
-        System.out.println("Check");
         wda.tap(searchFieldFocus.get("ELEMENT").getAsString());
     }
 
@@ -33,5 +31,10 @@ public class BasePage {
     public void selectLocation(String loc) {
         JsonObject locItem = wda.findElementsByClass("XCUIElementTypeStaticText", loc);
         wda.tap(locItem.get("ELEMENT").getAsString());
+    }
+
+    public JsonObject VerifyText(String text) {
+         JsonObject element = wda.findElementsByXpath( "//XCUIElementTypeTextView[@value='" + text + "']");
+         return element;
     }
 }
