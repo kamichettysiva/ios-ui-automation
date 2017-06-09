@@ -20,7 +20,11 @@ public class SharedDriver extends WebDriverAgent {
 
     @Before("@complete-7")
     public void beforeDevice7Scenario() {
-        wda.cleanEnv("7", "my");
+      //  wda.cleanEnv("7", "my");
+        if (wda.sessionId==null){
+            wda.cleanEnv("7", "my");
+            System.out.println("Cleaned");
+        }
     }
 
 }

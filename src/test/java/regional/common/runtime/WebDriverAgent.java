@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import static datacollection.DeviceConfig.*;
+import static net.sourceforge.htmlunit.corejs.javascript.tools.shell.Main.global;
 
 public class WebDriverAgent {
     CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -120,9 +121,14 @@ public class WebDriverAgent {
     }
 
     public JsonObject findElementsByClass(String classVal, String label) {
+        String FieldToRefer = "value";
+        if (classVal.equals("SearchField")){
+            FieldToRefer = "label";
+        }
+        String finalFieldToRefer = FieldToRefer;
         Supplier<JsonObject> action = () -> {
             String route = url + "/" + sessionId + "/elements";
-            String body = "{\"using\":\"class name\",\"value\":\"" + classVal + "\"}";
+            String body = "{\"using\":\"class name\",\""+ finalFieldToRefer + "\":\"" + classVal + "\"}";
             return post(route, body);
         };
 
@@ -131,6 +137,17 @@ public class WebDriverAgent {
         JsonObject response = waitFor(action, checker, "Element not found!");
         return getSpecificElement(label, response);
     }
+
+    public JsonObject findElementsByClass(String classVal, int btnIndex) {
+            String route = url + "/" + sessionId + "/elements";
+            String body = "{\"using\":\"class name\",\"value\":\"" + classVal + "\"}";
+            JsonObject json = post(route, body);
+            json.get("value").getAsJsonArray();
+            return json;
+
+    }
+
+
 
     public JsonObject findElementsByXpath(String xpath) {
         Supplier<JsonObject> action = () -> {
